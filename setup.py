@@ -7,7 +7,7 @@ def read_requirements(filename):
 
 setup(
     name='xzero_file',  # Replace with your project name
-    version='0.0.2',  # Replace with your project version
+    version='0.0.3',  # Replace with your project version
     packages=find_packages(),
     install_requires=read_requirements('requirements.txt'),
     author='alick97',  # Replace with your name
@@ -19,7 +19,7 @@ setup(
     description='upload and download file by web',  # Replace with your description
     long_description=open(os.path.join(os.path.dirname(__file__), 'xzero_file', 'README.md')).read(),  # Optional: Read from README.md
     long_description_content_type='text/markdown',  # Optional: If you're using Markdown in README.md
-    url='https://github.com/alick97/xzero_file',  # Replace with your project's URL (e.g., GitHub)
+    url='https://github.com/alick97/xzero-file',  # Replace with your project's URL (e.g., GitHub)
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License',  # Replace with your project's license

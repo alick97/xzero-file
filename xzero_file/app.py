@@ -1,7 +1,7 @@
 import os
 import argparse
 from flask import Flask, send_file, send_from_directory, Blueprint, jsonify, request, redirect, url_for
-from .service import is_safe_path
+from .service import is_safe_path, get_public_ip, display_qr_code_in_terminal
 
 WORKDIR = "."
 
@@ -56,6 +56,11 @@ def main(args):
     WORKDIR = os.path.abspath(args.cwd)
     print(f" * workdir: {WORKDIR}")
     print(f" * static dir: {app.config['STATIC_DIR']}")
+    if args.host == '0.0.0.0':
+        ip = get_public_ip()
+        url = f'http://{ip}:{args.port}'
+        print("** visit: ", url)
+        display_qr_code_in_terminal(url)
 
     app.run(debug=False, host=args.host, port=args.port)
 
