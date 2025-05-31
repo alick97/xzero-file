@@ -38,7 +38,13 @@ def list_file():
         file_list.append({"name": "..", "is_dir": True})
     for f in os.listdir(req_path):
         file_list.append({"name": f, "is_dir": os.path.isdir(os.path.join(req_path, f))})
-    return jsonify({"files": file_list})
+    def _sort_func(x):
+        name = x["name"]
+        if name == "..":
+            name == "\0"
+        return (not x["is_dir"], name)
+
+    return jsonify({"files": sorted(file_list, key=_sort_func)})
 
 @api_bp.route("files", methods=["PUT"])
 def upload_file():

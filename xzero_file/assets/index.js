@@ -4,6 +4,21 @@ const fileInputElement = document.getElementById("file-input")
 const uploadStatusElement = document.getElementById("upload-status")
 
 let basePath="."
+let fileIcon=""
+let dirIcon=""
+
+async function loadSVG(name) {
+    try {
+        const response = await fetch(`/assets/images/${name}.svg`);
+        if (!response.ok) {
+            throw new Error('Failed to load SVG');
+        }
+        const svgText = await response.text();
+        return svgText;
+    } catch (error) {
+        console.error('Error loading SVG:', error);
+    }
+}
 
 async function fetchFileList(name) {
     try {
@@ -20,15 +35,21 @@ async function fetchFileList(name) {
 }
 
 async function displayFileList(base, files) {
-    const body = document.body;
     fileListElement.innerHTML = "";
     files.forEach(async (file) => {
+        const fileItemElement = document.createElement("div")
+        fileItemElement.className = "file-item"
+        
         const link = document.createElement("a");
-        link.href="#"
+        link.href="#";
+        const iconElement = document.createElement("div");
+        iconElement.className="file-type-icon"
         if (file.is_dir) {
-            link.textContent = `[ dir  ] ${file.name}`
+            iconElement.innerHTML = dirIcon;
+            link.textContent = `${file.name}`
         } else {
-            link.textContent = `[ file ] ${file.name}`;
+            iconElement.innerHTML = fileIcon;
+            link.textContent = `${file.name}`;
         }
         link.addEventListener("click", async function(event) {
             event.preventDefault();
@@ -43,7 +64,11 @@ async function displayFileList(base, files) {
                 window.open(`/api/download?${searchParams.toString()}`, "_blank");
             }
         });
-        fileListElement.appendChild(link);
+
+        fileItemElement.append(iconElement)
+        fileItemElement.append(link)
+
+        fileListElement.appendChild(fileItemElement);
     });
 }
 
@@ -97,7 +122,13 @@ async function show_file_by_path(p) {
     await displayFileList(p, fileList.files);
 }
 
+async function initIcon() {
+    fileIcon = await loadSVG("file");
+    dirIcon = await loadSVG("dir");
+}
+
 async function init() {
+    await initIcon();
     submitUploadFileElement.addEventListener("click", uploadFile);
     await show_file_by_path(".")
 }
