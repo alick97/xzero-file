@@ -7,7 +7,7 @@ def read_requirements(filename):
 
 setup(
     name='xzero_file',  # Replace with your project name
-    version='0.0.3',  # Replace with your project version
+    version='0.0.4',  # Replace with your project version
     packages=find_packages(),
     install_requires=read_requirements('requirements.txt'),
     author='alick97',  # Replace with your name
