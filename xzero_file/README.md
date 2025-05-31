@@ -9,6 +9,7 @@
 
 #### usage
 ```
+pip install xzero-file
 python3 -m xzero_file.app
 ```
 
