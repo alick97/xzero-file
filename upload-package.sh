@@ -1,1 +1,1 @@
-twine upload --verbose dist/*
+python -m twine upload --verbose dist/*
