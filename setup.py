@@ -7,13 +7,13 @@ def read_requirements(filename):
 
 setup(
     name='xzero_file',  # Replace with your project name
-    version='0.0.6',  # Replace with your project version
+    version='0.0.8',  # Replace with your project version
     packages=find_packages(),
     install_requires=read_requirements('requirements.txt'),
     author='alick97',  # Replace with your name
     author_email='alick97@outlook.com',  # Replace with your email
     package_data={
-        '': ['requirements.txt', 'README.md', 'assets/**/*']
+        '': ['requirements.txt', 'README.md', 'assets/**/*', 'assets/*']
     },
     include_package_data=True,
     description='upload and download file by web',  # Replace with your description
