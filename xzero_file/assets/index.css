@@ -29,6 +29,7 @@ a:hover {
     display: flex;
     justify-content: flex-start;
     border-top: 0.5px solid #e9eef1;
+    overflow: hidden;
 }
 
 .file-item:nth-child(odd) {
@@ -39,4 +40,15 @@ a:hover {
     padding-right: 10px;
 }
 
-
+#upload-area-wrapper {
+    max-width: 100%;
+    overflow: scroll;
+}
+#upload-area {
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 30px 20px;
+}
